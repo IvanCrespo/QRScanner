@@ -7,17 +7,25 @@ import { AppComponent } from './app.component';
 
 /* Plugins */
 import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
+import { IonicStorageModule } from '@ionic/storage-angular';
+import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule,
+    IonicStorageModule.forRoot()
+  ],
   providers:
     [{
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy
     },
-      BarcodeScanner
+      BarcodeScanner,
+      InAppBrowser
     ],
   bootstrap: [AppComponent],
 })
