@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
+import { File } from '@awesome-cordova-plugins/file/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +26,8 @@ import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
       useClass: IonicRouteStrategy
     },
       BarcodeScanner,
-      InAppBrowser
+      InAppBrowser,
+      File
     ],
   bootstrap: [AppComponent],
 })
