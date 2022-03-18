@@ -24,7 +24,7 @@ export class Registro {
                 break;
 
             case 'geo:':
-                this.type = 'http';
+                this.type = 'geo';
                 this.icon = 'pin';
                 break;
 
