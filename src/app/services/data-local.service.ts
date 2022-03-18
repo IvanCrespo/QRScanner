@@ -5,6 +5,7 @@ import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { File } from '@awesome-cordova-plugins/file/ngx';
+import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
 
 /* Models */
 import { Registro } from '../models/registro.model';
@@ -20,6 +21,7 @@ export class DataLocalService {
     private storage: Storage,
     private inAppBrowser: InAppBrowser,
     private file: File,
+    private emailComposer: EmailComposer,
     private navCtrl: NavController,
   ) {
     this.cargarStorage();
@@ -81,5 +83,19 @@ export class DataLocalService {
 
   async escribirEnArchivo(text: string){
     await this.file.writeExistingFile(this.file.dataDirectory, 'registros.csv', text);
+    const archivo = `${this.file.dataDirectory}registros.csv`
+
+    const email = {
+      to: 'contacto.ivancrespo@gmail.com',
+      /* cc: 'erika@mustermann.de', */
+      /* bcc: ['john@doe.com', 'jane@doe.com'], */
+      attachments: [
+        archivo
+      ],
+      subject: 'Backup de Scans',
+      body: 'Hola! Aqui tiene sus backups de sus scans - <strong>ScanApp</strong>',
+      isHtml: true
+    };
+    this.emailComposer.open(email);
   }
 }
